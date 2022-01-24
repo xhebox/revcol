@@ -1,12 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"log"
 
 	"github.com/spf13/cobra"
 	pb "github.com/xhebox/revcol/VowOfHeroes/proto"
+	json "google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -50,7 +50,11 @@ func protoCommand() *cobra.Command {
 			if err := proto.Unmarshal(in, strings); err != nil {
 				log.Fatalf("failed to parse proto: %+v\n", err)
 			}
-			out, err := json.MarshalIndent(strings, "", "\t")
+			marshaler := json.MarshalOptions{
+				Multiline: true,
+				Indent: "\t",
+			}
+			out, err := marshaler.Marshal(strings)
 			if err != nil {
 				log.Fatalf("failed to marshal json: %+v\n", err)
 			}
@@ -102,7 +106,11 @@ func strResCommand() *cobra.Command {
 			if err := proto.Unmarshal(in, strings); err != nil {
 				log.Fatalf("failed to parse proto: %+v\n", err)
 			}
-			out, err := json.MarshalIndent(strings, "", "\t")
+			marshaler := json.MarshalOptions{
+				Multiline: true,
+				Indent: "\t",
+			}
+			out, err := marshaler.Marshal(strings)
 			if err != nil {
 				log.Fatalf("failed to marshal json: %+v\n", err)
 			}
@@ -154,7 +162,11 @@ func attributeCommand() *cobra.Command {
 			if err := proto.Unmarshal(in, strings); err != nil {
 				log.Fatalf("failed to parse proto: %+v\n", err)
 			}
-			out, err := json.MarshalIndent(strings, "", "\t")
+			marshaler := json.MarshalOptions{
+				Multiline: true,
+				Indent: "\t",
+			}
+			out, err := marshaler.Marshal(strings)
 			if err != nil {
 				log.Fatalf("failed to marshal json: %+v\n", err)
 			}
@@ -206,7 +218,11 @@ func monsterCommand() *cobra.Command {
 			if err := proto.Unmarshal(in, strings); err != nil {
 				log.Fatalf("failed to parse proto: %+v\n", err)
 			}
-			out, err := json.MarshalIndent(strings, "", "\t")
+			marshaler := json.MarshalOptions{
+				Multiline: true,
+				Indent: "\t",
+			}
+			out, err := marshaler.Marshal(strings)
 			if err != nil {
 				log.Fatalf("failed to marshal json: %+v\n", err)
 			}
@@ -258,7 +274,11 @@ func monsterGroupCommand() *cobra.Command {
 			if err := proto.Unmarshal(in, strings); err != nil {
 				log.Fatalf("failed to parse proto: %+v\n", err)
 			}
-			out, err := json.MarshalIndent(strings, "", "\t")
+			marshaler := json.MarshalOptions{
+				Multiline: true,
+				Indent: "\t",
+			}
+			out, err := marshaler.Marshal(strings)
 			if err != nil {
 				log.Fatalf("failed to marshal json: %+v\n", err)
 			}
